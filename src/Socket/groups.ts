@@ -48,7 +48,7 @@ export const makeGroupsSocket = (config: SocketConfig) => {
 					]
 				}
 			]
-		})
+		}, config.groupFetchAllParticipatingQueryTimeoutMs)
 		const data: { [_: string]: GroupMetadata } = { }
 		const groupsChild = getBinaryNodeChild(result, 'groups')
 		if(groupsChild) {

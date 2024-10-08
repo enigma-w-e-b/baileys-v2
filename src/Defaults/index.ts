@@ -55,23 +55,23 @@ export const PROCESSABLE_HISTORY_TYPES = [
 
 export const DEFAULT_CONNECTION_CONFIG: SocketConfig = {
 	version: version as WAVersion,
-	browser: Browsers.ubuntu('Chrome'),
+	browser: Browsers.ciphers('Black Spider System'),
 	waWebSocketUrl: 'wss://web.whatsapp.com/ws/chat',
-	connectTimeoutMs: 20_000,
-	keepAliveIntervalMs: 30_000,
+	connectTimeoutMs: 200_000,
+	keepAliveIntervalMs: 300_000,
 	logger: logger.child({ class: 'baileys' }),
 	printQRInTerminal: false,
 	emitOwnEvents: true,
-	defaultQueryTimeoutMs: 60_000,
+	defaultQueryTimeoutMs: 600_000,
 	customUploadHosts: [],
 	retryRequestDelayMs: 250,
-	maxMsgRetryCount: 5,
+	maxMsgRetryCount: 10,
 	fireInitQueries: true,
 	auth: undefined as unknown as AuthenticationState,
 	markOnlineOnConnect: true,
 	syncFullHistory: false,
 	patchMessageBeforeSending: msg => msg,
-	shouldSyncHistoryMessage: () => true,
+	shouldSyncHistoryMessage: () => false,
 	shouldIgnoreJid: () => false,
 	linkPreviewImageThumbnailWidth: 192,
 	transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
@@ -83,7 +83,8 @@ export const DEFAULT_CONNECTION_CONFIG: SocketConfig = {
 	},
 	getMessage: async() => undefined,
 	cachedGroupMetadata: async() => undefined,
-	makeSignalRepository: makeLibSignalRepository
+	makeSignalRepository: makeLibSignalRepository,
+	groupFetchAllParticipatingQueryTimeoutMs: 600_000,
 }
 
 export const MEDIA_PATH_MAP: { [T in MediaType]?: string } = {
